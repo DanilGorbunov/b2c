@@ -5,8 +5,9 @@ import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetTitle, SheetDescription } from "@/components/ui/sheet"
 import { useState } from "react"
+import { motion } from "framer-motion"
 
 export function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false)
@@ -28,66 +29,81 @@ export function SiteHeader() {
       <div className="container flex h-16 items-center justify-between relative">
         {/* Left Side: Logo */}
         <div className="flex items-center">
-          <Link href="/" className="flex items-center">
-            <Image 
-              src="/images/logo_favi/b2logo.svg" 
-              alt="B2Stack Logo" 
-              width={139}
-              height={39}
-              className="h-8 w-auto"
-              priority
-            />
-          </Link>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 400 }}
+          >
+            <Link href="/" className="flex items-center">
+              <Image 
+                src="/images/logo_favi/b2logo.svg" 
+                alt="B2Stack Logo" 
+                width={139}
+                height={39}
+                className="h-8 w-auto"
+                priority
+              />
+            </Link>
+          </motion.div>
         </div>
 
         {/* Center: Desktop Menu - Only visible on medium screens and up */}
         <nav className="hidden md:flex items-center gap-6 absolute left-1/2 transform -translate-x-1/2" role="navigation" aria-label="Main navigation">
-          <Link
-            href="/"
-            className={`text-sm font-normal transition-colors duration-200 ${
-              isActive("/")
-                ? "text-[#E5E5E5]"
-                : "text-[#737373] hover:text-[#A3A3A3]"
-            }`}
-            aria-current={isActive("/") ? "page" : undefined}
-          >
-            Services
-          </Link>
-          <Link
-            href="/about"
-            className={`text-sm font-normal transition-colors duration-200 ${
-              isActive("/about")
-                ? "text-[#E5E5E5]"
-                : "text-[#737373] hover:text-[#A3A3A3]"
-            }`}
-            aria-current={isActive("/about") ? "page" : undefined}
-          >
-            About
-          </Link>
-          <Link
-            href="/contact"
-            className={`text-sm font-normal transition-colors duration-200 ${
-              isActive("/contact")
-                ? "text-[#E5E5E5]"
-                : "text-[#737373] hover:text-[#A3A3A3]"
-            }`}
-            aria-current={isActive("/contact") ? "page" : undefined}
-          >
-            Contact
-          </Link>
+          <motion.div whileHover={{ y: -2 }} transition={{ duration: 0.2 }}>
+            <Link
+              href="/"
+              className={`text-sm font-normal transition-colors duration-200 ${
+                isActive("/")
+                  ? "text-[#E5E5E5]"
+                  : "text-[#737373] hover:text-[#A3A3A3]"
+              }`}
+              aria-current={isActive("/") ? "page" : undefined}
+            >
+              Services
+            </Link>
+          </motion.div>
+          <motion.div whileHover={{ y: -2 }} transition={{ duration: 0.2 }}>
+            <Link
+              href="/about"
+              className={`text-sm font-normal transition-colors duration-200 ${
+                isActive("/about")
+                  ? "text-[#E5E5E5]"
+                  : "text-[#737373] hover:text-[#A3A3A3]"
+              }`}
+              aria-current={isActive("/about") ? "page" : undefined}
+            >
+              About
+            </Link>
+          </motion.div>
+          <motion.div whileHover={{ y: -2 }} transition={{ duration: 0.2 }}>
+            <Link
+              href="/contact"
+              className={`text-sm font-normal transition-colors duration-200 ${
+                isActive("/contact")
+                  ? "text-[#E5E5E5]"
+                  : "text-[#737373] hover:text-[#A3A3A3]"
+              }`}
+              aria-current={isActive("/contact") ? "page" : undefined}
+            >
+              Contact
+            </Link>
+          </motion.div>
         </nav>
 
         {/* Right Side: Schedule Button and Mobile Menu */}
         <div className="flex items-center gap-4">
           {/* Schedule a Call Button - Desktop */}
-          <a
+          <motion.a
             href="https://t.me/+380934486559"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden md:flex items-center justify-center px-4 py-2 bg-white text-black rounded-md text-sm font-normal hover:bg-[#F5F5F5] transition-colors duration-200"
+            whileHover={{ scale: 1.05, y: -1 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 400 }}
           >
             Schedule a Call
-          </a>
+          </motion.a>
 
           {/* Mobile Menu - Only visible on small screens */}
           <div className="md:hidden">
@@ -99,6 +115,8 @@ export function SiteHeader() {
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="bg-[#0A0A0A] border-[#171717] [&>button]:hidden">
+                <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+                <SheetDescription className="sr-only">Main navigation menu</SheetDescription>
                 {/* Custom close button without green border */}
                 <button
                   onClick={() => setIsOpen(false)}

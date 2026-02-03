@@ -77,24 +77,30 @@ export default function ContactPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="flex items-start space-x-4"
+                className="flex items-start space-x-4 group"
               >
-                <div className="bg-[#262626] border border-[#262626] p-3 rounded-lg">
-                  <contact.icon className="h-5 w-5 text-[#E5E5E5]" />
-                </div>
+                <motion.div 
+                  className="bg-[#262626] border border-[#262626] p-3 rounded-lg"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                >
+                  <contact.icon className="h-5 w-5 text-[#E5E5E5] group-hover:text-[#F5F5F5] transition-colors duration-200" />
+                </motion.div>
                 <div className="flex-1">
                   <div className="text-xs text-[#737373] font-light uppercase tracking-wider mb-1">
                     {contact.label}
                   </div>
                   {contact.href ? (
-                    <a
+                    <motion.a
                       href={contact.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#E5E5E5] hover:text-[#F5F5F5] transition-colors duration-200 font-light"
+                      className="text-[#E5E5E5] hover:text-[#F5F5F5] transition-colors duration-200 font-light inline-block"
+                      whileHover={{ x: 4 }}
+                      transition={{ type: "spring", stiffness: 400 }}
                     >
                       {contact.value}
-                    </a>
+                    </motion.a>
                   ) : (
                     <div className="text-[#E5E5E5] font-light">{contact.value}</div>
                   )}
