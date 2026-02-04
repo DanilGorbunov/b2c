@@ -6,6 +6,13 @@ import Link from "next/link";
 import { projects } from "@/lib/projects";
 import { SafeImage } from "@/components/safe-image";
 
+const statistics = [
+  { value: "50+", label: "Happy Clients" },
+  { value: "120+", label: "Projects Completed" },
+  { value: "8+", label: "Years Experience" },
+  { value: "15+", label: "Countries Served" }
+];
+
 export default function Portfolio() {
   // Sort projects by newest first by default
   const sortedProjects = [...projects].sort((a, b) => (b.year || 2024) - (a.year || 2024));
@@ -97,6 +104,49 @@ export default function Portfolio() {
               Full-cycle software development — from concept to launch. Web, mobile,<br className="hidden md:block" />
               and AI solutions for startups and enterprises.
             </motion.p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Statistics Section */}
+      <section className="py-16 md:py-20">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-8"
+          >
+            {statistics.map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.1, y: -5 }}
+                className="text-center cursor-default"
+              >
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
+                  viewport={{ once: true }}
+                  whileHover={{ scale: 1.15 }}
+                  className="text-4xl md:text-5xl font-bold text-[#E5E5E5] mb-2"
+                >
+                  {stat.value}
+                </motion.div>
+                <motion.div
+                  className="text-sm md:text-base text-[#A3A3A3] font-light"
+                  whileHover={{ x: 2 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                >
+                  {stat.label}
+                </motion.div>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </section>

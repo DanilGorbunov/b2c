@@ -16,7 +16,8 @@ const teamMembers = [
   {
     name: "Andrew Dmytryk",
     role: "Investor - Co-Founder",
-    initials: "AnD"
+    initials: "AnD",
+    image: "/images/logo_favi/andrew_dm.jpeg"
   },
   {
     name: "Danil Gorbunov",
@@ -24,13 +25,6 @@ const teamMembers = [
     initials: "DG",
     image: "/images/logo_favi/danil.png"
   }
-];
-
-const statistics = [
-  { value: "50+", label: "Happy Clients" },
-  { value: "120+", label: "Projects Completed" },
-  { value: "8+", label: "Years Experience" },
-  { value: "15+", label: "Countries Served" }
 ];
 
 export default function AboutPage() {
@@ -42,7 +36,7 @@ export default function AboutPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-20"
+          className="mb-10"
         >
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -53,7 +47,7 @@ export default function AboutPage() {
             Our Mission
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-base md:text-lg text-[#A3A3A3] leading-relaxed font-light max-w-3xl mx-auto text-center"
@@ -61,23 +55,6 @@ export default function AboutPage() {
             To transform businesses through AI-powered digital solutions that automate workflows, reduce operational costs, and deliver exceptional user experiences. We believe technology should work for people, not the other way around—building intelligent systems that scale from startup to enterprise.
           </motion.p>
         </motion.section>
-
-        {/* Description */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-center mb-16"
-        >
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-base md:text-lg text-[#A3A3A3] leading-relaxed font-light max-w-2xl mx-auto"
-          >
-            We're a passionate team of engineers, designers, and strategists dedicated to building exceptional digital experiences.
-          </motion.p>
-        </motion.div>
 
         {/* Key Members Section */}
         <motion.section
@@ -116,18 +93,18 @@ export default function AboutPage() {
                 transition={{ duration: 0.4, delay: index * 0.1 + 0.2, type: "spring" }}
                 viewport={{ once: true }}
                 whileHover={{ scale: 1.1, rotate: 5 }}
-                className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-[#262626] border border-[#262626] flex items-center justify-center mx-auto mb-4 overflow-hidden"
+                className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-[#262626] border border-[#262626] flex items-center justify-center mx-auto mb-4 overflow-hidden"
               >
                 {member.image ? (
                   <SafeImage
                     src={member.image}
                     alt={member.name}
                     className="w-full h-full object-cover"
-                    width={96}
-                    height={96}
+                    width={160}
+                    height={160}
                   />
                 ) : (
-                  <span className="text-xl md:text-2xl font-bold text-[#E5E5E5]">
+                  <span className="text-3xl md:text-4xl font-bold text-[#E5E5E5]">
                     {member.initials}
                   </span>
                 )}
@@ -161,7 +138,7 @@ export default function AboutPage() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ duration: 0.4, delay: index * 0.1 + 0.5 }}
-                  viewport={{ once: true }}
+          viewport={{ once: true }}
                   href={member.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -187,45 +164,6 @@ export default function AboutPage() {
             ))}
           </div>
         </motion.section>
-
-        {/* Statistics Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20"
-        >
-          {statistics.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.1, y: -5 }}
-              className="text-center cursor-default"
-            >
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.15 }}
-                className="text-4xl md:text-5xl font-bold text-[#E5E5E5] mb-2"
-              >
-                {stat.value}
-        </motion.div>
-        <motion.div
-                className="text-sm md:text-base text-[#A3A3A3] font-light"
-                whileHover={{ x: 2 }}
-                transition={{ type: "spring", stiffness: 400 }}
-              >
-                {stat.label}
-                  </motion.div>
-              </motion.div>
-            ))}
-        </motion.div>
       </div>
     </div>
   );
